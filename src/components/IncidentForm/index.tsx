@@ -1,6 +1,6 @@
 import { useState }          from 'react'
 import { supabase }          from '../../lib/supabase'
-import type { IncidentFormData } from '../../types'
+import type { IncidentFormData} from '../../types'
 import Step1 from './Step1'
 import Step2 from './Step2'
 import Step3 from './Step3'
@@ -58,18 +58,18 @@ export default function IncidentForm() {
       }
 
       // TypeScript garante que só enviamos campos válidos para o banco
-      const { error } = await supabase.from('incidents').insert({
+    const { error } = await supabase.from('incidents').insert({
         id,
-        type:            form.type   || null,
+        type:            form.type,
         sector:          form.sector,
-        location:        form.location   || null,
-        severity:        form.severity   || null,
+        location:        form.location     || null,
+        severity:        form.severity,
         description:     form.description,
-        what_caused:     form.whatCaused     || null,
-        what_to_improve: form.whatToImprove  || null,
+        what_caused:     form.whatCaused   || null,
+        what_to_improve: form.whatToImprove || null,
         image_url:       imageUrl,
-        status:          'pendente' as const,
-      })
+        status:          'pendente',
+    })
 
       if (error) throw error
       setProtocol(id)
